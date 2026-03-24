@@ -91,7 +91,7 @@ export default function TestDetail() {
         {/* Main content */}
         <div className="lg:col-span-2 space-y-6">
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <Card><CardContent className="p-4 text-center">
               <p className="text-2xl font-bold text-foreground">{attempts.length}</p>
               <p className="text-xs text-muted-foreground">Attempts</p>
