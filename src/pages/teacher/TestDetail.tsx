@@ -5,7 +5,7 @@ import DashboardLayout from "@/components/DashboardLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, AlertTriangle, CheckCircle, Clock, XCircle } from "lucide-react";
+import { ArrowLeft, AlertTriangle, CheckCircle, Clock, XCircle, Trophy } from "lucide-react";
 import { format } from "date-fns";
 
 export default function TestDetail() {
@@ -91,7 +91,7 @@ export default function TestDetail() {
         {/* Main content */}
         <div className="lg:col-span-2 space-y-6">
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <Card><CardContent className="p-4 text-center">
               <p className="text-2xl font-bold text-foreground">{attempts.length}</p>
               <p className="text-xs text-muted-foreground">Attempts</p>
@@ -103,6 +103,10 @@ export default function TestDetail() {
             <Card><CardContent className="p-4 text-center">
               <p className="text-2xl font-bold text-destructive">{violations.length}</p>
               <p className="text-xs text-muted-foreground">Violations</p>
+            </CardContent></Card>
+            <Card><CardContent className="p-4 text-center cursor-pointer hover:shadow-md transition-shadow" onClick={() => navigate(`/leaderboard/${testId}`)}>
+              <Trophy className="w-5 h-5 mx-auto text-yellow-500 mb-1" />
+              <p className="text-xs text-muted-foreground">Leaderboard</p>
             </CardContent></Card>
           </div>
 

@@ -14,6 +14,7 @@ import EditTest from "./pages/teacher/EditTest";
 import StudentDashboard from "./pages/student/StudentDashboard";
 import TakeTest from "./pages/student/TakeTest";
 import TestResult from "./pages/student/TestResult";
+import Leaderboard from "./pages/Leaderboard";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="/student" element={<StudentDashboard />} />
             <Route path="/student/test/:testId" element={<TakeTest />} />
             <Route path="/student/result/:attemptId" element={<TestResult />} />
+            <Route path="/leaderboard/:testId" element={<Leaderboard />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>
