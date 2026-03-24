@@ -14,6 +14,7 @@ import EditTest from "./pages/teacher/EditTest";
 import StudentDashboard from "./pages/student/StudentDashboard";
 import TakeTest from "./pages/student/TakeTest";
 import TestResult from "./pages/student/TestResult";
+import Leaderboard from "./pages/Leaderboard";
 
 const queryClient = new QueryClient();
 
