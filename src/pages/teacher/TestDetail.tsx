@@ -5,7 +5,7 @@ import DashboardLayout from "@/components/DashboardLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, AlertTriangle, CheckCircle, Clock, XCircle } from "lucide-react";
+import { ArrowLeft, AlertTriangle, CheckCircle, Clock, XCircle, Trophy } from "lucide-react";
 import { format } from "date-fns";
 
 export default function TestDetail() {
