@@ -104,6 +104,10 @@ export default function TestDetail() {
               <p className="text-2xl font-bold text-destructive">{violations.length}</p>
               <p className="text-xs text-muted-foreground">Violations</p>
             </CardContent></Card>
+            <Card><CardContent className="p-4 text-center cursor-pointer hover:shadow-md transition-shadow" onClick={() => navigate(`/leaderboard/${testId}`)}>
+              <Trophy className="w-5 h-5 mx-auto text-yellow-500 mb-1" />
+              <p className="text-xs text-muted-foreground">Leaderboard</p>
+            </CardContent></Card>
           </div>
 
           {/* Student attempts */}

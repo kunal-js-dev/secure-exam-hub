@@ -73,7 +73,10 @@ export default function StudentDashboard() {
                   ) : isCompleted ? (
                     <>
                       <Button variant="outline" className="flex-1" onClick={() => navigate(`/student/result/${attempt.id}`)}>
-                        <BarChart3 className="w-4 h-4 mr-2" /> View Result
+                        <BarChart3 className="w-4 h-4 mr-2" /> Result
+                      </Button>
+                      <Button variant="outline" size="icon" onClick={() => navigate(`/leaderboard/${test.id}`)}>
+                        <Trophy className="w-4 h-4 text-yellow-500" />
                       </Button>
                       {attempt.score !== null && (
                         <span className="flex items-center text-sm font-semibold text-foreground px-3">
