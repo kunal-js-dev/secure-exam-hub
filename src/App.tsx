@@ -35,6 +35,7 @@ const App = () => (
             <Route path="/student" element={<StudentDashboard />} />
             <Route path="/student/test/:testId" element={<TakeTest />} />
             <Route path="/student/result/:attemptId" element={<TestResult />} />
+            <Route path="/leaderboard/:testId" element={<Leaderboard />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>
