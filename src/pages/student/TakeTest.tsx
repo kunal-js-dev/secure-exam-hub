@@ -269,7 +269,7 @@ export default function TakeTest() {
   const question = questions[currentQ];
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col select-none" style={{ WebkitUserSelect: "none", userSelect: "none" }}>
       {/* Top bar */}
       <div className="sticky top-0 z-50 bg-card border-b border-border px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
