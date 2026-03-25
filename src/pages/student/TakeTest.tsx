@@ -136,14 +136,52 @@ export default function TakeTest() {
       }
     };
 
+    // Prevent copy, cut, paste
+    const preventCopy = (e: Event) => {
+      e.preventDefault();
+      toast.error("Copying is not allowed during the test");
+    };
+
+    // Prevent screenshots (PrintScreen key)
+    const preventScreenshot = (e: KeyboardEvent) => {
+      if (e.key === "PrintScreen" || e.key === "PrtSc" || e.key === "PrtScn") {
+        e.preventDefault();
+        recordViolation("Screenshot Attempt", "Student attempted to take a screenshot");
+        toast.error("Screenshots are not allowed");
+      }
+      // Block Ctrl+Shift+S, Ctrl+P (print), Ctrl+Shift+I (devtools)
+      if (
+        (e.ctrlKey && e.shiftKey && (e.key === "S" || e.key === "s" || e.key === "I" || e.key === "i")) ||
+        (e.ctrlKey && (e.key === "p" || e.key === "P" || e.key === "c" || e.key === "C" || e.key === "u" || e.key === "U"))
+      ) {
+        e.preventDefault();
+        toast.error("This action is not allowed during the test");
+      }
+    };
+
+    // Prevent right-click context menu
+    const preventContextMenu = (e: Event) => {
+      e.preventDefault();
+    };
+
     document.addEventListener("fullscreenchange", handleFullscreenChange);
     document.addEventListener("visibilitychange", handleVisibility);
     window.addEventListener("blur", handleBlur);
+    document.addEventListener("copy", preventCopy);
+    document.addEventListener("cut", preventCopy);
+    document.addEventListener("paste", preventCopy);
+    document.addEventListener("keydown", preventScreenshot);
+    document.addEventListener("contextmenu", preventContextMenu);
 
     return () => {
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
       document.removeEventListener("visibilitychange", handleVisibility);
       window.removeEventListener("blur", handleBlur);
+      document.removeEventListener("copy", preventCopy);
+      document.removeEventListener("cut", preventCopy);
+      document.removeEventListener("paste", preventCopy);
+      document.removeEventListener("keydown", preventScreenshot);
+      document.removeEventListener("contextmenu", preventContextMenu);
     };
   }, [started, recordViolation, submitTest]);
 
