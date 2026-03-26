@@ -85,7 +85,7 @@ export default function CreateCodingTest() {
         coding_test_id: test.id,
         question_text: q.question_text,
         sort_order: i,
-        test_cases: q.test_cases,
+        test_cases: JSON.parse(JSON.stringify(q.test_cases)),
       }));
       const { error: qError } = await supabase.from("coding_questions").insert(questionsToInsert);
       if (qError) throw qError;
