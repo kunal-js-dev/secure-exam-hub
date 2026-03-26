@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Plus, FileText, Users, AlertTriangle, Eye, Trash2, Code } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import OnlineStudentsPanel from "@/components/OnlineStudentsPanel";
 import { useEffect } from "react";
 import { toast } from "sonner";
 import {
