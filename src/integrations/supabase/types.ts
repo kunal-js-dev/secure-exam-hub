@@ -14,6 +14,157 @@ export type Database = {
   }
   public: {
     Tables: {
+      coding_attempts: {
+        Row: {
+          coding_test_id: string
+          id: string
+          score: number | null
+          started_at: string
+          status: string
+          student_id: string
+          submitted_at: string | null
+          total_questions: number | null
+        }
+        Insert: {
+          coding_test_id: string
+          id?: string
+          score?: number | null
+          started_at?: string
+          status?: string
+          student_id: string
+          submitted_at?: string | null
+          total_questions?: number | null
+        }
+        Update: {
+          coding_test_id?: string
+          id?: string
+          score?: number | null
+          started_at?: string
+          status?: string
+          student_id?: string
+          submitted_at?: string | null
+          total_questions?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "coding_attempts_coding_test_id_fkey"
+            columns: ["coding_test_id"]
+            isOneToOne: false
+            referencedRelation: "coding_tests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      coding_questions: {
+        Row: {
+          coding_test_id: string
+          id: string
+          question_text: string
+          sort_order: number
+          test_cases: Json
+        }
+        Insert: {
+          coding_test_id: string
+          id?: string
+          question_text: string
+          sort_order?: number
+          test_cases?: Json
+        }
+        Update: {
+          coding_test_id?: string
+          id?: string
+          question_text?: string
+          sort_order?: number
+          test_cases?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "coding_questions_coding_test_id_fkey"
+            columns: ["coding_test_id"]
+            isOneToOne: false
+            referencedRelation: "coding_tests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      coding_submissions: {
+        Row: {
+          attempt_id: string
+          code: string
+          created_at: string
+          id: string
+          question_id: string
+          result: Json | null
+          status: string
+        }
+        Insert: {
+          attempt_id: string
+          code?: string
+          created_at?: string
+          id?: string
+          question_id: string
+          result?: Json | null
+          status?: string
+        }
+        Update: {
+          attempt_id?: string
+          code?: string
+          created_at?: string
+          id?: string
+          question_id?: string
+          result?: Json | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "coding_submissions_attempt_id_fkey"
+            columns: ["attempt_id"]
+            isOneToOne: false
+            referencedRelation: "coding_attempts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "coding_submissions_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "coding_questions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      coding_tests: {
+        Row: {
+          created_at: string
+          description: string | null
+          duration_minutes: number
+          id: string
+          is_published: boolean
+          teacher_id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          duration_minutes?: number
+          id?: string
+          is_published?: boolean
+          teacher_id: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          duration_minutes?: number
+          id?: string
+          is_published?: boolean
+          teacher_id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
