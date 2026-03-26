@@ -8,8 +8,10 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Clock, CheckCircle, XCircle, PlayCircle, BarChart3, Trophy, Code } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useStudentPresence } from "@/hooks/usePresence";
 
 export default function StudentDashboard() {
+  useStudentPresence();
   const { user } = useAuth();
   const navigate = useNavigate();
 
