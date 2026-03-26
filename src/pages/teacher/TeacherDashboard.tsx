@@ -151,26 +151,31 @@ export default function TeacherDashboard() {
         </div>
       }
     >
-      {/* Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        {[
-          { label: "MCQ Tests", value: tests.length, icon: FileText, color: "text-primary" },
-          { label: "Coding Tests", value: codingTests.length, icon: Code, color: "text-accent" },
-          { label: "Violations", value: unseenViolations, icon: AlertTriangle, color: "text-destructive" },
-          { label: "Terminated", value: terminatedAttempts, icon: AlertTriangle, color: "text-warning" },
-        ].map(stat => (
-          <Card key={stat.label} className="animate-fade-in">
-            <CardContent className="p-4 flex items-center gap-4">
-              <div className={`w-10 h-10 rounded-lg bg-secondary flex items-center justify-center ${stat.color}`}>
-                <stat.icon className="w-5 h-5" />
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-foreground">{stat.value}</p>
-                <p className="text-xs text-muted-foreground">{stat.label}</p>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
+      {/* Online Students + Stats */}
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 mb-8">
+        <div className="lg:col-span-1">
+          <OnlineStudentsPanel />
+        </div>
+        <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {[
+            { label: "MCQ Tests", value: tests.length, icon: FileText, color: "text-primary" },
+            { label: "Coding Tests", value: codingTests.length, icon: Code, color: "text-accent" },
+            { label: "Violations", value: unseenViolations, icon: AlertTriangle, color: "text-destructive" },
+            { label: "Terminated", value: terminatedAttempts, icon: AlertTriangle, color: "text-warning" },
+          ].map(stat => (
+            <Card key={stat.label} className="animate-fade-in">
+              <CardContent className="p-4 flex items-center gap-4">
+                <div className={`w-10 h-10 rounded-lg bg-secondary flex items-center justify-center ${stat.color}`}>
+                  <stat.icon className="w-5 h-5" />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-foreground">{stat.value}</p>
+                  <p className="text-xs text-muted-foreground">{stat.label}</p>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
 
       {/* MCQ Tests */}
