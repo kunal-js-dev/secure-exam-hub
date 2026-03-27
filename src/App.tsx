@@ -11,6 +11,7 @@ import TeacherDashboard from "./pages/teacher/TeacherDashboard";
 import CreateTest from "./pages/teacher/CreateTest";
 import CreateCodingTest from "./pages/teacher/CreateCodingTest";
 import TestDetail from "./pages/teacher/TestDetail";
+import CodingTestDetail from "./pages/teacher/CodingTestDetail";
 import EditTest from "./pages/teacher/EditTest";
 import StudentDashboard from "./pages/student/StudentDashboard";
 import TakeTest from "./pages/student/TakeTest";
