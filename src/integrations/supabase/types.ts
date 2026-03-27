@@ -165,6 +165,41 @@ export type Database = {
         }
         Relationships: []
       }
+      coding_violations: {
+        Row: {
+          coding_attempt_id: string
+          created_at: string
+          description: string | null
+          id: string
+          seen_by_teacher: boolean
+          violation_type: string
+        }
+        Insert: {
+          coding_attempt_id: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          seen_by_teacher?: boolean
+          violation_type: string
+        }
+        Update: {
+          coding_attempt_id?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          seen_by_teacher?: boolean
+          violation_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "coding_violations_coding_attempt_id_fkey"
+            columns: ["coding_attempt_id"]
+            isOneToOne: false
+            referencedRelation: "coding_attempts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           created_at: string
