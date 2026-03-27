@@ -36,6 +36,7 @@ const App = () => (
             <Route path="/teacher/create-coding-test" element={<CreateCodingTest />} />
             <Route path="/teacher/test/:testId" element={<TestDetail />} />
             <Route path="/teacher/test/:testId/edit" element={<EditTest />} />
+            <Route path="/teacher/coding-test/:testId" element={<CodingTestDetail />} />
             <Route path="/student" element={<StudentDashboard />} />
             <Route path="/student/test/:testId" element={<TakeTest />} />
             <Route path="/student/coding-test/:testId" element={<TakeCodingTest />} />

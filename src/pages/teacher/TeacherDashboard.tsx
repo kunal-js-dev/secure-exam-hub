@@ -261,6 +261,9 @@ export default function TeacherDashboard() {
                   </div>
                   <p className="text-sm text-muted-foreground">{ct.duration_minutes} min</p>
                 </div>
+                <Button variant="outline" size="sm" onClick={() => navigate(`/teacher/coding-test/${ct.id}`)}>
+                  <Eye className="w-4 h-4 mr-1" /> View
+                </Button>
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
                     <Button variant="outline" size="icon" className="text-destructive hover:text-destructive">
