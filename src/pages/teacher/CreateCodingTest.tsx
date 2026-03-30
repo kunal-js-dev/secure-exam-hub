@@ -78,7 +78,7 @@ export default function CreateCodingTest() {
     try {
       const { data: test, error: testError } = await supabase
         .from("coding_tests")
-        .insert({ title, description, duration_minutes: duration, is_published: isPublished, teacher_id: user.id })
+        .insert({ title, description, duration_minutes: duration, is_published: isPublished, teacher_id: user.id, language } as any)
         .select()
         .single();
       if (testError) throw testError;
