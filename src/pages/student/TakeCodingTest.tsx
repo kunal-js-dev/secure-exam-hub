@@ -313,19 +313,19 @@ export default function TakeCodingTest() {
       </div>
 
       {currentQuestion && (
-        <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
+        <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
           {/* Question panel */}
-          <div className="lg:w-2/5 p-4 border-b lg:border-b-0 lg:border-r overflow-auto">
+          <div className="md:w-2/5 p-3 md:p-4 border-b md:border-b-0 md:border-r overflow-auto max-h-[30vh] md:max-h-none">
             <Card>
-              <CardHeader>
-                <CardTitle className="text-base">Question {currentIndex + 1}</CardTitle>
+              <CardHeader className="p-3 md:p-6">
+                <CardTitle className="text-sm md:text-base">Question {currentIndex + 1}</CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-sm text-foreground whitespace-pre-wrap">{currentQuestion.question_text}</p>
-                <div className="mt-4 space-y-2">
+              <CardContent className="p-3 md:p-6 pt-0">
+                <p className="text-xs md:text-sm text-foreground whitespace-pre-wrap">{currentQuestion.question_text}</p>
+                <div className="mt-3 md:mt-4 space-y-1.5 md:space-y-2">
                   <p className="text-xs font-medium text-muted-foreground">Test Cases:</p>
                   {(currentQuestion.test_cases as any[]).map((tc: any, i: number) => (
-                    <div key={i} className="text-xs p-2 rounded bg-secondary/50 font-mono">
+                    <div key={i} className="text-xs p-1.5 md:p-2 rounded bg-secondary/50 font-mono">
                       <span className="text-muted-foreground">Input:</span> {tc.input}<br />
                       <span className="text-muted-foreground">Expected:</span> {tc.expectedOutput}
                     </div>
@@ -336,19 +336,19 @@ export default function TakeCodingTest() {
           </div>
 
           {/* Code editor panel */}
-          <div className="flex-1 flex flex-col p-4 overflow-hidden">
-            <div className="flex items-center justify-between mb-2">
-              <Badge variant="outline" className="font-mono text-xs">
-                {{ c: "C", cpp: "C++", java: "Java", python: "Python" }[(test as any).language || "c"] || "C"} Language
+          <div className="flex-1 flex flex-col p-3 md:p-4 overflow-hidden min-h-0">
+            <div className="flex items-center justify-between mb-2 gap-2">
+              <Badge variant="outline" className="font-mono text-xs shrink-0">
+                {{ c: "C", cpp: "C++", java: "Java", python: "Python" }[(test as any).language || "c"] || "C"}
               </Badge>
-              <Button size="sm" onClick={handleCompile} disabled={compiling}>
-                {compiling ? <Loader2 className="w-4 h-4 mr-1 animate-spin" /> : <Play className="w-4 h-4 mr-1" />}
-                {compiling ? "Compiling..." : "Compile & Run"}
+              <Button size="sm" onClick={handleCompile} disabled={compiling} className="shrink-0 text-xs md:text-sm">
+                {compiling ? <Loader2 className="w-3.5 h-3.5 mr-1 animate-spin" /> : <Play className="w-3.5 h-3.5 mr-1" />}
+                {compiling ? "Running..." : "Compile & Run"}
               </Button>
             </div>
 
             <textarea
-              className="flex-1 w-full rounded-lg border border-input bg-card p-3 font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-ring"
+              className="flex-1 w-full rounded-lg border border-input bg-card p-2 md:p-3 font-mono text-xs md:text-sm resize-none focus:outline-none focus:ring-2 focus:ring-ring"
               placeholder={
                 {
                   c: `#include <stdio.h>\n\nint main() {\n    // Write your C code here\n    return 0;\n}`,
@@ -360,20 +360,32 @@ export default function TakeCodingTest() {
               value={codes[currentQuestion.id] || ""}
               onChange={e => setCodes(prev => ({ ...prev, [currentQuestion.id]: e.target.value }))}
               spellCheck={false}
-              style={{ minHeight: "200px", tabSize: 4 }}
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="off"
+              data-gramm="false"
+              data-gramm_editor="false"
+              data-enable-grammarly="false"
+              inputMode="text"
+              onPaste={e => e.preventDefault()}
+              onCopy={e => e.preventDefault()}
+              onCut={e => e.preventDefault()}
+              onDrop={e => e.preventDefault()}
+              onDragOver={e => e.preventDefault()}
+              style={{ minHeight: "150px", tabSize: 4 }}
             />
 
             {result && (
-              <div className="mt-3 space-y-2 max-h-48 overflow-auto">
+              <div className="mt-2 md:mt-3 space-y-1.5 md:space-y-2 max-h-32 md:max-h-48 overflow-auto">
                 {result.compilationError && (
-                  <div className="p-2 rounded bg-destructive/10 text-destructive text-xs font-mono">
-                    Compilation Error: {result.compilationError}
+                  <div className="p-1.5 md:p-2 rounded bg-destructive/10 text-destructive text-xs font-mono">
+                    Error: {result.compilationError}
                   </div>
                 )}
                 {result.results?.map((r: any, i: number) => (
-                  <div key={i} className={`p-2 rounded text-xs font-mono flex items-start gap-2 ${r.passed ? "bg-green-500/10 text-green-700" : "bg-destructive/10 text-destructive"}`}>
-                    {r.passed ? <CheckCircle className="w-3.5 h-3.5 mt-0.5 shrink-0" /> : <XCircle className="w-3.5 h-3.5 mt-0.5 shrink-0" />}
-                    <div>
+                  <div key={i} className={`p-1.5 md:p-2 rounded text-xs font-mono flex items-start gap-1.5 md:gap-2 ${r.passed ? "bg-green-500/10 text-green-700" : "bg-destructive/10 text-destructive"}`}>
+                    {r.passed ? <CheckCircle className="w-3 h-3 md:w-3.5 md:h-3.5 mt-0.5 shrink-0" /> : <XCircle className="w-3 h-3 md:w-3.5 md:h-3.5 mt-0.5 shrink-0" />}
+                    <div className="min-w-0 break-all">
                       <div>Input: {r.input}</div>
                       <div>Expected: {r.expectedOutput}</div>
                       {!r.passed && <div>Got: {r.actualOutput}</div>}
@@ -388,18 +400,18 @@ export default function TakeCodingTest() {
       )}
 
       {/* Footer navigation */}
-      <div className="border-t bg-card px-4 py-3 flex items-center justify-between">
-        <Button variant="outline" onClick={() => setCurrentIndex(i => Math.max(0, i - 1))} disabled={currentIndex === 0}>
-          <ChevronLeft className="w-4 h-4 mr-1" /> Previous
+      <div className="border-t bg-card px-3 md:px-4 py-2 md:py-3 flex items-center justify-between gap-2">
+        <Button variant="outline" size="sm" onClick={() => setCurrentIndex(i => Math.max(0, i - 1))} disabled={currentIndex === 0}>
+          <ChevronLeft className="w-4 h-4 mr-0.5 md:mr-1" /> <span className="hidden sm:inline">Previous</span><span className="sm:hidden">Prev</span>
         </Button>
-        <div className="flex gap-2">
+        <div className="flex gap-1.5 md:gap-2">
           {isLast ? (
-            <Button onClick={() => handleFinalSubmit("completed")} disabled={submitting} variant="destructive">
-              <Send className="w-4 h-4 mr-1" /> {submitting ? "Submitting..." : "Submit All"}
+            <Button onClick={() => handleFinalSubmit("completed")} disabled={submitting} variant="destructive" size="sm">
+              <Send className="w-3.5 h-3.5 mr-1" /> {submitting ? "..." : "Submit"}
             </Button>
           ) : (
-            <Button onClick={() => setCurrentIndex(i => Math.min(questions.length - 1, i + 1))}>
-              Next <ChevronRight className="w-4 h-4 ml-1" />
+            <Button size="sm" onClick={() => setCurrentIndex(i => Math.min(questions.length - 1, i + 1))}>
+              Next <ChevronRight className="w-4 h-4 ml-0.5 md:ml-1" />
             </Button>
           )}
         </div>
