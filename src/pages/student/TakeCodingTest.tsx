@@ -372,7 +372,7 @@ export default function TakeCodingTest() {
               onCut={e => e.preventDefault()}
               onDrop={e => e.preventDefault()}
               onDragOver={e => e.preventDefault()}
-              style={{ minHeight: "150px", tabSize: 4, WebkitTextSecurity: "none" as any }}
+              style={{ minHeight: "150px", tabSize: 4 }}
             />
 
             {result && (
