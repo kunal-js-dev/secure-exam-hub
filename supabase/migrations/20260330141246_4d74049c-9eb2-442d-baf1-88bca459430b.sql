@@ -1,0 +1,1 @@
+ALTER TABLE public.coding_tests ADD COLUMN language text NOT NULL DEFAULT 'c';

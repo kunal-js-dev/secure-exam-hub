@@ -207,7 +207,7 @@ export default function TakeCodingTest() {
     setCompiling(true);
     try {
       const { data, error } = await supabase.functions.invoke("evaluate-code", {
-        body: { code, testCases: currentQuestion.test_cases, questionText: currentQuestion.question_text },
+        body: { code, testCases: currentQuestion.test_cases, questionText: currentQuestion.question_text, language: (test as any).language || "c" },
       });
       if (error) throw error;
       setCompileResults(prev => ({ ...prev, [currentQuestion.id]: data }));
@@ -319,7 +319,9 @@ export default function TakeCodingTest() {
           {/* Code editor panel */}
           <div className="flex-1 flex flex-col p-4 overflow-hidden">
             <div className="flex items-center justify-between mb-2">
-              <Badge variant="outline" className="font-mono text-xs">C Language</Badge>
+              <Badge variant="outline" className="font-mono text-xs">
+                {{ c: "C", cpp: "C++", java: "Java", python: "Python" }[(test as any).language || "c"] || "C"} Language
+              </Badge>
               <Button size="sm" onClick={handleCompile} disabled={compiling}>
                 {compiling ? <Loader2 className="w-4 h-4 mr-1 animate-spin" /> : <Play className="w-4 h-4 mr-1" />}
                 {compiling ? "Compiling..." : "Compile & Run"}
@@ -328,7 +330,14 @@ export default function TakeCodingTest() {
 
             <textarea
               className="flex-1 w-full rounded-lg border border-input bg-card p-3 font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-ring"
-              placeholder={`#include <stdio.h>\n\nint main() {\n    // Write your C code here\n    return 0;\n}`}
+              placeholder={
+                {
+                  c: `#include <stdio.h>\n\nint main() {\n    // Write your C code here\n    return 0;\n}`,
+                  cpp: `#include <iostream>\nusing namespace std;\n\nint main() {\n    // Write your C++ code here\n    return 0;\n}`,
+                  java: `import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        // Write your Java code here\n    }\n}`,
+                  python: `# Write your Python code here\n`,
+                }[(test as any).language || "c"] || `#include <stdio.h>\n\nint main() {\n    return 0;\n}`
+              }
               value={codes[currentQuestion.id] || ""}
               onChange={e => setCodes(prev => ({ ...prev, [currentQuestion.id]: e.target.value }))}
               spellCheck={false}

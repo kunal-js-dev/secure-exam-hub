@@ -139,6 +139,7 @@ export type Database = {
           duration_minutes: number
           id: string
           is_published: boolean
+          language: string
           teacher_id: string
           title: string
           updated_at: string
@@ -149,6 +150,7 @@ export type Database = {
           duration_minutes?: number
           id?: string
           is_published?: boolean
+          language?: string
           teacher_id: string
           title: string
           updated_at?: string
@@ -159,6 +161,7 @@ export type Database = {
           duration_minutes?: number
           id?: string
           is_published?: boolean
+          language?: string
           teacher_id?: string
           title?: string
           updated_at?: string

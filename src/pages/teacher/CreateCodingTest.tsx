@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { toast } from "sonner";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Plus, Trash2, ArrowLeft, Save } from "lucide-react";
 
 interface TestCase {
@@ -36,6 +37,7 @@ export default function CreateCodingTest() {
   const [description, setDescription] = useState("");
   const [duration, setDuration] = useState(60);
   const [isPublished, setIsPublished] = useState(false);
+  const [language, setLanguage] = useState("c");
   const [questions, setQuestions] = useState<CodingQuestionForm[]>([{ ...emptyQuestion, test_cases: [{ ...emptyTestCase }] }]);
 
   const updateQuestion = (qi: number, field: string, value: string) => {
@@ -76,7 +78,7 @@ export default function CreateCodingTest() {
     try {
       const { data: test, error: testError } = await supabase
         .from("coding_tests")
-        .insert({ title, description, duration_minutes: duration, is_published: isPublished, teacher_id: user.id })
+        .insert({ title, description, duration_minutes: duration, is_published: isPublished, teacher_id: user.id, language } as any)
         .select()
         .single();
       if (testError) throw testError;
@@ -120,6 +122,20 @@ export default function CreateCodingTest() {
               <div>
                 <Label>Duration (minutes)</Label>
                 <Input type="number" value={duration} onChange={e => setDuration(Number(e.target.value))} min={1} required />
+              </div>
+              <div>
+                <Label>Programming Language</Label>
+                <Select value={language} onValueChange={setLanguage}>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="c">C</SelectItem>
+                    <SelectItem value="cpp">C++</SelectItem>
+                    <SelectItem value="java">Java</SelectItem>
+                    <SelectItem value="python">Python</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
             </div>
             <div className="flex items-center gap-2">
