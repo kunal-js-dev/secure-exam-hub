@@ -105,11 +105,26 @@ export default function TakeCodingTest() {
       toast.error("Copying is not allowed during the test");
     };
 
+    const preventDrop = (e: Event) => {
+      e.preventDefault();
+      toast.error("Drag and drop is not allowed during the test");
+    };
+
     const preventScreenshot = (e: KeyboardEvent) => {
       if (e.key === "PrintScreen" || e.key === "PrtSc" || e.key === "PrtScn") {
         e.preventDefault();
         recordViolation("Screenshot Attempt", "Student attempted to take a screenshot");
         toast.error("Screenshots are not allowed");
+      }
+      // Block Ctrl+C, Ctrl+V, Ctrl+X, Ctrl+A everywhere
+      if (e.ctrlKey && ["c","C","v","V","x","X","a","A"].includes(e.key)) {
+        e.preventDefault();
+        toast.error("This action is not allowed during the test");
+      }
+      // Block Cmd+C/V/X on Mac
+      if (e.metaKey && ["c","C","v","V","x","X","a","A"].includes(e.key)) {
+        e.preventDefault();
+        toast.error("This action is not allowed during the test");
       }
       if (
         (e.ctrlKey && e.shiftKey && (e.key === "S" || e.key === "s" || e.key === "I" || e.key === "i")) ||
