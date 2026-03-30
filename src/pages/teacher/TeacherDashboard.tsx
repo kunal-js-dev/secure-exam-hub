@@ -259,7 +259,9 @@ export default function TeacherDashboard() {
                       {ct.is_published ? "Published" : "Draft"}
                     </Badge>
                   </div>
-                  <p className="text-sm text-muted-foreground">{ct.duration_minutes} min</p>
+                  <p className="text-sm text-muted-foreground">
+                    {ct.duration_minutes} min · {{ c: "C", cpp: "C++", java: "Java", python: "Python" }[(ct as any).language || "c"] || "C"}
+                  </p>
                 </div>
                 <Button variant="outline" size="sm" onClick={() => navigate(`/teacher/coding-test/${ct.id}`)}>
                   <Eye className="w-4 h-4 mr-1" /> View
