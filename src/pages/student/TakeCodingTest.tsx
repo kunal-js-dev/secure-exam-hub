@@ -319,7 +319,9 @@ export default function TakeCodingTest() {
           {/* Code editor panel */}
           <div className="flex-1 flex flex-col p-4 overflow-hidden">
             <div className="flex items-center justify-between mb-2">
-              <Badge variant="outline" className="font-mono text-xs">C Language</Badge>
+              <Badge variant="outline" className="font-mono text-xs">
+                {{ c: "C", cpp: "C++", java: "Java", python: "Python" }[(test as any).language || "c"] || "C"} Language
+              </Badge>
               <Button size="sm" onClick={handleCompile} disabled={compiling}>
                 {compiling ? <Loader2 className="w-4 h-4 mr-1 animate-spin" /> : <Play className="w-4 h-4 mr-1" />}
                 {compiling ? "Compiling..." : "Compile & Run"}
