@@ -330,7 +330,14 @@ export default function TakeCodingTest() {
 
             <textarea
               className="flex-1 w-full rounded-lg border border-input bg-card p-3 font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-ring"
-              placeholder={`#include <stdio.h>\n\nint main() {\n    // Write your C code here\n    return 0;\n}`}
+              placeholder={
+                {
+                  c: `#include <stdio.h>\n\nint main() {\n    // Write your C code here\n    return 0;\n}`,
+                  cpp: `#include <iostream>\nusing namespace std;\n\nint main() {\n    // Write your C++ code here\n    return 0;\n}`,
+                  java: `import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        // Write your Java code here\n    }\n}`,
+                  python: `# Write your Python code here\n`,
+                }[(test as any).language || "c"] || `#include <stdio.h>\n\nint main() {\n    return 0;\n}`
+              }
               value={codes[currentQuestion.id] || ""}
               onChange={e => setCodes(prev => ({ ...prev, [currentQuestion.id]: e.target.value }))}
               spellCheck={false}
