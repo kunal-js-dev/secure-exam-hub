@@ -143,6 +143,8 @@ export default function TakeCodingTest() {
     document.addEventListener("copy", preventCopy);
     document.addEventListener("cut", preventCopy);
     document.addEventListener("paste", preventCopy);
+    document.addEventListener("drop", preventDrop);
+    document.addEventListener("dragover", preventDrop);
     document.addEventListener("keydown", preventScreenshot);
     document.addEventListener("contextmenu", preventContextMenu);
 
@@ -153,6 +155,8 @@ export default function TakeCodingTest() {
       document.removeEventListener("copy", preventCopy);
       document.removeEventListener("cut", preventCopy);
       document.removeEventListener("paste", preventCopy);
+      document.removeEventListener("drop", preventDrop);
+      document.removeEventListener("dragover", preventDrop);
       document.removeEventListener("keydown", preventScreenshot);
       document.removeEventListener("contextmenu", preventContextMenu);
     };
