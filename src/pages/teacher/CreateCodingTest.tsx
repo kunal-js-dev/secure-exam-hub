@@ -123,6 +123,20 @@ export default function CreateCodingTest() {
                 <Label>Duration (minutes)</Label>
                 <Input type="number" value={duration} onChange={e => setDuration(Number(e.target.value))} min={1} required />
               </div>
+              <div>
+                <Label>Programming Language</Label>
+                <Select value={language} onValueChange={setLanguage}>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="c">C</SelectItem>
+                    <SelectItem value="cpp">C++</SelectItem>
+                    <SelectItem value="java">Java</SelectItem>
+                    <SelectItem value="python">Python</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
             <div className="flex items-center gap-2">
               <Switch checked={isPublished} onCheckedChange={setIsPublished} />

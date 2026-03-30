@@ -117,7 +117,11 @@ export default function CodingTestDetail() {
             </CardContent></Card>
             <Card><CardContent className="p-4 text-center">
               <p className="text-2xl font-bold text-foreground">{questions.length}</p>
-              <p className="text-xs text-muted-foreground">Questions</p>
+             <p className="text-xs text-muted-foreground">Questions</p>
+            </CardContent></Card>
+            <Card><CardContent className="p-4 text-center">
+              <p className="text-2xl font-bold text-foreground uppercase">{{ c: "C", cpp: "C++", java: "Java", python: "Python" }[(test as any).language || "c"] || "C"}</p>
+              <p className="text-xs text-muted-foreground">Language</p>
             </CardContent></Card>
           </div>
 

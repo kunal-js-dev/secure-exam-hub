@@ -207,7 +207,7 @@ export default function TakeCodingTest() {
     setCompiling(true);
     try {
       const { data, error } = await supabase.functions.invoke("evaluate-code", {
-        body: { code, testCases: currentQuestion.test_cases, questionText: currentQuestion.question_text },
+        body: { code, testCases: currentQuestion.test_cases, questionText: currentQuestion.question_text, language: (test as any).language || "c" },
       });
       if (error) throw error;
       setCompileResults(prev => ({ ...prev, [currentQuestion.id]: data }));
