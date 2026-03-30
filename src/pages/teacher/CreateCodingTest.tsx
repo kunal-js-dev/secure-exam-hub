@@ -37,6 +37,7 @@ export default function CreateCodingTest() {
   const [description, setDescription] = useState("");
   const [duration, setDuration] = useState(60);
   const [isPublished, setIsPublished] = useState(false);
+  const [language, setLanguage] = useState("c");
   const [questions, setQuestions] = useState<CodingQuestionForm[]>([{ ...emptyQuestion, test_cases: [{ ...emptyTestCase }] }]);
 
   const updateQuestion = (qi: number, field: string, value: string) => {
