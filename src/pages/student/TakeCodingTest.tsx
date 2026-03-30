@@ -400,18 +400,18 @@ export default function TakeCodingTest() {
       )}
 
       {/* Footer navigation */}
-      <div className="border-t bg-card px-4 py-3 flex items-center justify-between">
-        <Button variant="outline" onClick={() => setCurrentIndex(i => Math.max(0, i - 1))} disabled={currentIndex === 0}>
-          <ChevronLeft className="w-4 h-4 mr-1" /> Previous
+      <div className="border-t bg-card px-3 md:px-4 py-2 md:py-3 flex items-center justify-between gap-2">
+        <Button variant="outline" size="sm" onClick={() => setCurrentIndex(i => Math.max(0, i - 1))} disabled={currentIndex === 0}>
+          <ChevronLeft className="w-4 h-4 mr-0.5 md:mr-1" /> <span className="hidden sm:inline">Previous</span><span className="sm:hidden">Prev</span>
         </Button>
-        <div className="flex gap-2">
+        <div className="flex gap-1.5 md:gap-2">
           {isLast ? (
-            <Button onClick={() => handleFinalSubmit("completed")} disabled={submitting} variant="destructive">
-              <Send className="w-4 h-4 mr-1" /> {submitting ? "Submitting..." : "Submit All"}
+            <Button onClick={() => handleFinalSubmit("completed")} disabled={submitting} variant="destructive" size="sm">
+              <Send className="w-3.5 h-3.5 mr-1" /> {submitting ? "..." : "Submit"}
             </Button>
           ) : (
-            <Button onClick={() => setCurrentIndex(i => Math.min(questions.length - 1, i + 1))}>
-              Next <ChevronRight className="w-4 h-4 ml-1" />
+            <Button size="sm" onClick={() => setCurrentIndex(i => Math.min(questions.length - 1, i + 1))}>
+              Next <ChevronRight className="w-4 h-4 ml-0.5 md:ml-1" />
             </Button>
           )}
         </div>
