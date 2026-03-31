@@ -363,14 +363,17 @@ export default function TakeCodingTest() {
               autoComplete="off"
               autoCorrect="off"
               autoCapitalize="off"
+              inputMode="text"
               data-gramm="false"
               data-gramm_editor="false"
               data-enable-grammarly="false"
-              inputMode="text"
-              onPaste={e => e.preventDefault()}
-              onCopy={e => e.preventDefault()}
-              onCut={e => e.preventDefault()}
-              onDrop={e => e.preventDefault()}
+              data-lpignore="true"
+              data-form-type="other"
+              aria-autocomplete="none"
+              onPaste={e => { e.preventDefault(); toast.error("Pasting is not allowed"); }}
+              onCopy={e => { e.preventDefault(); toast.error("Copying is not allowed"); }}
+              onCut={e => { e.preventDefault(); toast.error("Cutting is not allowed"); }}
+              onDrop={e => { e.preventDefault(); toast.error("Drag and drop is not allowed"); }}
               onDragOver={e => e.preventDefault()}
               style={{ minHeight: "150px", tabSize: 4 }}
             />
