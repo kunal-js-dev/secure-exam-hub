@@ -375,7 +375,7 @@ export default function TakeCodingTest() {
               onCut={e => { e.preventDefault(); toast.error("Cutting is not allowed"); }}
               onDrop={e => { e.preventDefault(); toast.error("Drag and drop is not allowed"); }}
               onDragOver={e => e.preventDefault()}
-              style={{ minHeight: "150px", tabSize: 4, WebkitTextSecurity: "none" as any }}
+              style={{ minHeight: "150px", tabSize: 4 }}
             />
 
             {result && (
